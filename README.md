@@ -8,7 +8,7 @@ install via apt-get
 once pip3 is installed, 
 $ pip3 install virtualenv 
 <br />
-$ Virtualenv <venv name>
+$ Virtualenv venv_name
   <br />
 $ source path/to/virtualenv/bin/activate
   <br />
