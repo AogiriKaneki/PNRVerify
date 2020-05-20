@@ -1,8 +1,8 @@
-#PNR VERIFY
+<h1>PNR VERIFY</h1>
 This is a development version of the tool i wrote called PNRify, i experminet with selenium and amadeus in this repo.
 This is also a part of my portfolio to showcase as i dont want to share the original tool which is deployed.
 
-#INSTALL AND RUN INSRTUCTIONS
+<h1>INSTALL AND RUN INSRTUCTIONS</h1>
 you will need python3 and pip3
 install via apt-get 
 once pip3 is installed, 
