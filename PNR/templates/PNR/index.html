@@ -12,7 +12,7 @@
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
+  <link rel="shortcut icon" href=" {% static 'logo.png' %} " sizes="16x16" type="image/png">
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -40,7 +40,7 @@
   </button>
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
-      <a class="nav-link" href="{% url 'login' %}">Sign out</a>
+      <a class="nav-link" href="{% url 'logout' %}">Sign out</a>
     </li>
   </ul>
 </nav>
@@ -69,18 +69,18 @@
           <h3> </h3>
           <h3> Luxury Airlines</h3>
           <li class="nav-item">
-            <a class="nav-link active" href="#">
+            <a class="nav-link active" href="{% url 'soon' %}">
               <span data-feather="home"></span>
               Ethiad<span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="#">
+            <a class="nav-link active" href="{% url 'soon' %}">
               <span data-feather="home"></span>
               Lufthansa<span class="sr-only">(current)</span>
             </a>
           </li><li class="nav-item">
-            <a class="nav-link active" href="#">
+            <a class="nav-link active" href="{% url 'soon' %}">
               <span data-feather="home"></span>
               British Airways<span class="sr-only">(current)</span>
             </a>

@@ -2,11 +2,12 @@
 import time
 from django.shortcuts import render , redirect
 from django.http import HttpResponse
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate ,login
 from django.contrib.auth.models import User
 from django.utils.datastructures import MultiValueDictKeyError
 from django.template.response import TemplateResponse
-
+from django.contrib.auth.decorators import login_required
+from PNRify.settings import LOGIN_REDIRECT_URL
 #Selenium Imports
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
@@ -15,29 +16,35 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.keys import Keys
 
+
 def login_auth(request):
     try:
+
         if request.method == 'POST':
             uname = request.POST.get('uname')
             pwrd =  request.POST.get('pass')
             user= authenticate(username = uname ,password = pwrd)
             if user is not None:
-                request.session['usernm']=uname
+                login(request , user)
                 return redirect('dashboard',permanent = True )
             else:
                 return render(request, 'user/login.html', {})
             return render(request, 'user/login.html', {})
+
     except MultiValueDictKeyError:
         return render(request, 'user/login.html', {})
 
+@login_required(login_url=LOGIN_REDIRECT_URL)
 def redirect_to_dash(request):
     uname = request.session.get('usernm')
     if(uname) : del(request.session['usernm'])
     return render(request,'PNR/index.html',{'uname':uname})
 
+@login_required(login_url=LOGIN_REDIRECT_URL)
 def goair_landing(request):
     return render(request, 'PNR/GoAir.html')
 
+@login_required(login_url=LOGIN_REDIRECT_URL)
 def goair_verify(request):
     if request.method == 'POST':
         pnr = request.POST.get('pnr')
@@ -65,9 +72,11 @@ def goair_verify(request):
             return render(request,'PNR/GoAir.html',{'check':True , 'auth_status':False})
 
 
+@login_required(login_url=LOGIN_REDIRECT_URL)
 def indigo_landing(request):
     return render(request, 'PNR/Indigo.html', {"check":False})
 
+@login_required(login_url=LOGIN_REDIRECT_URL)
 def indigo_verify(request):
     if request.method == 'POST':
         pnr = request.POST.get('pnr')
@@ -92,3 +101,8 @@ def indigo_verify(request):
 
         except TimeoutException:
             return render(request,'PNR/Indigo.html',{'check':True , 'auth_status':False})
+
+
+@login_required(login_url=LOGIN_REDIRECT_URL)
+def soon(request):
+    return render(request , 'PNR/soon.html')
